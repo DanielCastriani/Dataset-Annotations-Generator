@@ -1,2 +1,3 @@
 /images
-/annotations
+/annotation
+/__pycache__
