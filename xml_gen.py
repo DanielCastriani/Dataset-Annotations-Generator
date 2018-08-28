@@ -16,7 +16,7 @@ br = (0,0)
 qtd_imgs = 0
 
 image_folder = 'images'
-savedir = 'annotation'
+savedir = 'annotations'
 obj = 'placa'
 
 def line_select_callback(clk,rls):
@@ -66,7 +66,7 @@ def onkeypress(event):
             tl_list.append(tl)
             br_list.append(br)
 
-        print(object_list[-1],'\ttl:',tl,'\tbr:',br)
+        # print(object_list[-1],'\ttl:',tl,'\tbr:',br)
 
 if __name__ == '__main__':
     
@@ -80,6 +80,8 @@ if __name__ == '__main__':
     print('\n\n[Q] ou [ESQ] - Proxima Imagem')
 
     print('*Sempre adicionar da esquerda para a direita, e de baixo para cima')
+
+    
 
     for n,image_file in enumerate(os.scandir(image_folder)):
         tl_list = []
@@ -102,6 +104,9 @@ if __name__ == '__main__':
         print('{}'.format(qtd_imgs))
 
         fig, ax = plt.subplots(1)        
+
+        mng = plt.get_current_fig_manager()
+        mng.window.showMaximized()
         
         image = cv2.imread(image_file.path)
         image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
