@@ -4,7 +4,7 @@ import cv2
 from lxml import etree
 import xml.etree.cElementTree as ET
 
-def write_xml(folder,img,objects,tl,br,savedir):
+def write_xml(folder,img,objects,tl,br,savedir,verbose):
     '''
     folder = pasta da imagem
 
@@ -18,7 +18,8 @@ def write_xml(folder,img,objects,tl,br,savedir):
 
     '''
     if len(objects) == 0:
-        print('Não criou arquivo')
+        if verbose:
+            print('Não criou arquivo')
         return False
 
     if not os.path.isdir(savedir):
@@ -58,6 +59,7 @@ def write_xml(folder,img,objects,tl,br,savedir):
     save_path = os.path.join(savedir,img.name.replace('png','xml'))
     with open(save_path,'wb') as temp_xml:
         temp_xml.write(xml_str)
-    print('\nXML Gerado {} objetos\n'.format(str(len(objects))))
+    if verbose:
+        print('\nXML Gerado {} objetos\n'.format(str(len(objects))))
 
     return True

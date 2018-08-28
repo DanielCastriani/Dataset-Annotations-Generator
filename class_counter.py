@@ -1,13 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
-dir = 'annotations'
 
-cl = []
-qtd = []
-
-def find(p):
-    global cl
-    global qtd
+def find(p,cl,qtd):
 
     for obj in p.iter('object'):
         for name in obj.iter('name'):
@@ -19,11 +13,29 @@ def find(p):
                 qtd.append(1)
 
 
-for n, f_xml in enumerate(os.scandir(dir)):
-    if f_xml.name.endswith('xml') == True:
-        tree = ET.parse(f_xml)
-        root = tree.getroot()
-        find(root)       
 
-for i in range(len(qtd)):
-    print(cl[i],'',qtd[i])
+def count():
+    """
+    return classes,QTD,Str
+    """
+    dir = 'annotations'
+    cl = []
+    qtd = []
+    qtd_arqs = 0
+    for _, f_xml in enumerate(os.scandir(dir)):
+        if f_xml.name.endswith('xml') == True:
+            qtd_arqs += 1
+            tree = ET.parse(f_xml)
+            root = tree.getroot()
+            find(root,cl,qtd)       
+    s = ''
+    total_qtd = 0 
+    for i in range(len(qtd)):
+       s+= cl[i]+':'+str(qtd[i])+'\n'
+       total_qtd += qtd[i]
+    s += '\nTotal de objetos:' + str(total_qtd)
+    s += '\nTotal de arquivos:' + str(qtd_arqs)
+    return cl,qtd,s
+
+#_,_,s = count()
+#print(s)

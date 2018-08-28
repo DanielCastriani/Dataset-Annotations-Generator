@@ -1,19 +1,21 @@
 #pylint: disable=E1101
 
 import os
+import sys
 import matplotlib.pyplot as plt
 import cv2
 from matplotlib.widgets import RectangleSelector
 import xml_writer as w_xml
+import class_counter as c_count
 
+verbose = False
+v_c_count = False
 img = None
 tl_list = []
 br_list = []
 object_list = []
 tl = (0,0)
 br = (0,0)
-
-qtd_imgs = 0
 
 image_folder = 'images'
 savedir = 'annotations'
@@ -38,7 +40,7 @@ def onkeypress(event):
     global img
     
     if event.key == 'q' or event.key == 'escape':
-        w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir)       
+        w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir,verbose)       
         tl_list = []
         br_list = []
         img = None
@@ -66,42 +68,59 @@ def onkeypress(event):
             tl_list.append(tl)
             br_list.append(br)
 
-        # print(object_list[-1],'\ttl:',tl,'\tbr:',br)
+        if verbose:
+            print(object_list[-1],'\ttl:',tl,'\tbr:',br)
+
+def legenda():
+    if verbose:
+        print('[F1] - Add placa_de_regulamentacao')
+        print('[F2] - Add placa_de_advertencia')
+        print('[F3] - Add pare')
+        print('[F4] - Add de_preferencia')
+        print('[F5] - Add marcador_alimnhamento')
+        print('[F6] - Add marcador_de_perigo')
+
+        print('\n\n[Q] ou [ESQ] - Proxima Imagem')
+
+        print('*Sempre adicionar da esquerda para a direita, e de baixo para cima\n\n')
+    if v_c_count:
+        _,_,msg = c_count.count()
+        print('_________________________________________________________________')
+        print(msg)
+        print('_________________________________________________________________')
 
 if __name__ == '__main__':
     
-    print('[F1] - Add placa_de_regulamentacao')
-    print('[F2] - Add placa_de_advertencia')
-    print('[F3] - Add pare')
-    print('[F4] - Add de_preferencia')
-    print('[F5] - Add marcador_alimnhamento')
-    print('[F6] - Add marcador_de_perigo')
+    if len(sys.argv) == 1:
+        print("Parametros: -v -c")
 
-    print('\n\n[Q] ou [ESQ] - Proxima Imagem')
-
-    print('*Sempre adicionar da esquerda para a direita, e de baixo para cima')
-
+    for i in range(0,len(sys.argv)):
+        if sys.argv[i] == '-v':
+            verbose = True
+            print('Verbose ativado')
+        if sys.argv[i] == '-c':
+            v_c_count = True
+            print('Class Count ativado')
     
+    legenda()
 
     for n,image_file in enumerate(os.scandir(image_folder)):
+        img = image_file
+        verifica_existe = os.path.join(savedir,img.name.replace('png','xml'))
+        if os.path.exists(verifica_existe):
+            continue
+
         tl_list = []
         br_list = []
         object_list = []
         tl = (0,0)
         br = (0,0)
-        img = image_file
 
-        qtd_imgs += 1
+        if verbose:
+            print('File:',img.name)
 
         if not os.path.isdir(savedir):
             os.mkdir(savedir)
-
-        verifica_existe = os.path.join(savedir,img.name.replace('png','xml'))
-        if os.path.exists(verifica_existe):
-            continue
-
-
-        print('{}'.format(qtd_imgs))
 
         fig, ax = plt.subplots(1)        
 
@@ -123,3 +142,6 @@ if __name__ == '__main__':
         bbox = plt.connect('key_press_event',toggle_selector)
         key = plt.connect('key_press_event',onkeypress)
         plt.show()
+        if verbose:
+            os.system('clear')
+            legenda()
