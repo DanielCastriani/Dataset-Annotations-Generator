@@ -37,5 +37,6 @@ def count():
     s += '\nTotal de arquivos:' + str(qtd_arqs)
     return cl,qtd,s
 
-#_,_,s = count()
-#print(s)
+if __name__ == '__main__':
+    _,_,s = count()
+    print(s)
