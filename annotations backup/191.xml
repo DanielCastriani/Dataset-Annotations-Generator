@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>191.png</filename>
+  <segmented/>
+  <size>
+    <width>607</width>
+    <height>516</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>460</xmin>
+      <ymin>247</ymin>
+      <xmax>539</xmax>
+      <ymax>343</ymax>
+    </bndbox>
+  </object>
+</annotation>

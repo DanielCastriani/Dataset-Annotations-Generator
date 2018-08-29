@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>240 _rotate[-15].png</filename>
+  <segmented/>
+  <size>
+    <width>513</width>
+    <height>373</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_de_perigo</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>332</xmin>
+      <ymin>126</ymin>
+      <xmax>382</xmax>
+      <ymax>197</ymax>
+    </bndbox>
+  </object>
+</annotation>

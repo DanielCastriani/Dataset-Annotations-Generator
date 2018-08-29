@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>216 _FlipV.png</filename>
+  <segmented/>
+  <size>
+    <width>502</width>
+    <height>576</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>162</xmin>
+      <ymin>209</ymin>
+      <xmax>207</xmax>
+      <ymax>264</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>294 _FlipV _rotate[10].png</filename>
+  <segmented/>
+  <size>
+    <width>779</width>
+    <height>571</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>424</xmin>
+      <ymin>194</ymin>
+      <xmax>445</xmax>
+      <ymax>212</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>a-068 _FlipV _rotate[15].png</filename>
+  <segmented/>
+  <size>
+    <width>565</width>
+    <height>430</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>357</xmin>
+      <ymin>84</ymin>
+      <xmax>410</xmax>
+      <ymax>121</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>078.png</filename>
+  <segmented/>
+  <size>
+    <width>1256</width>
+    <height>822</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>698</xmin>
+      <ymin>251</ymin>
+      <xmax>762</xmax>
+      <ymax>314</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>702</xmin>
+      <ymin>315</ymin>
+      <xmax>752</xmax>
+      <ymax>362</ymax>
+    </bndbox>
+  </object>
+</annotation>

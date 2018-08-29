@@ -1,0 +1,46 @@
+<annotation>
+  <folder>images</folder>
+  <filename>068 _FlipV _rotate[10].png</filename>
+  <segmented/>
+  <size>
+    <width>949</width>
+    <height>377</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>730</xmin>
+      <ymin>50</ymin>
+      <xmax>826</xmax>
+      <ymax>133</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>182</xmin>
+      <ymin>288</ymin>
+      <xmax>209</xmax>
+      <ymax>312</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>148</xmin>
+      <ymin>295</ymin>
+      <xmax>169</xmax>
+      <ymax>312</ymax>
+    </bndbox>
+  </object>
+</annotation>

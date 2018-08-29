@@ -32,7 +32,7 @@ def write_xml(folder,img,objects,tl,br,savedir,verbose):
     ET.SubElement(annotation,'folder').text = folder
     ET.SubElement(annotation,'filename').text = img.name
     # Não vai adicionar nem tag source e nem owner
-    ET.SubElement(annotation,'segmented').text = 0
+    ET.SubElement(annotation,'segmented').text = '0'
 
     size = ET.SubElement(annotation,'size')
     ET.SubElement(size,'width').text = str(width)

@@ -1,0 +1,46 @@
+<annotation>
+  <folder>images</folder>
+  <filename>070 _rotate[-15].png</filename>
+  <segmented/>
+  <size>
+    <width>326</width>
+    <height>305</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>121</xmin>
+      <ymin>113</ymin>
+      <xmax>158</xmax>
+      <ymax>151</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>225</xmin>
+      <ymin>196</ymin>
+      <xmax>243</xmax>
+      <ymax>216</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>244</xmin>
+      <ymin>200</ymin>
+      <xmax>260</xmax>
+      <ymax>220</ymax>
+    </bndbox>
+  </object>
+</annotation>

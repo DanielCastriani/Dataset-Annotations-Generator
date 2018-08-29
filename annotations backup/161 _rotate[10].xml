@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>161 _rotate[10].png</filename>
+  <segmented/>
+  <size>
+    <width>418</width>
+    <height>350</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>219</xmin>
+      <ymin>146</ymin>
+      <xmax>282</xmax>
+      <ymax>192</ymax>
+    </bndbox>
+  </object>
+</annotation>

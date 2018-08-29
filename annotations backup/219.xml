@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>219.png</filename>
+  <segmented/>
+  <size>
+    <width>933</width>
+    <height>702</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_de_perigo</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>424</xmin>
+      <ymin>278</ymin>
+      <xmax>471</xmax>
+      <ymax>380</ymax>
+    </bndbox>
+  </object>
+</annotation>

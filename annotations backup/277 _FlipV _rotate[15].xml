@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>277 _FlipV _rotate[15].png</filename>
+  <segmented/>
+  <size>
+    <width>1265</width>
+    <height>680</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_de_perigo</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>570</xmin>
+      <ymin>231</ymin>
+      <xmax>598</xmax>
+      <ymax>270</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>900</xmin>
+      <ymin>175</ymin>
+      <xmax>1026</xmax>
+      <ymax>292</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>230.png</filename>
+  <segmented/>
+  <size>
+    <width>562</width>
+    <height>512</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>256</xmin>
+      <ymin>163</ymin>
+      <xmax>335</xmax>
+      <ymax>239</ymax>
+    </bndbox>
+  </object>
+</annotation>

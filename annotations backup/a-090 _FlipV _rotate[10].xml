@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>a-090 _FlipV _rotate[10].png</filename>
+  <segmented/>
+  <size>
+    <width>659</width>
+    <height>490</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>504</xmin>
+      <ymin>31</ymin>
+      <xmax>551</xmax>
+      <ymax>74</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>514</xmin>
+      <ymin>77</ymin>
+      <xmax>553</xmax>
+      <ymax>118</ymax>
+    </bndbox>
+  </object>
+</annotation>

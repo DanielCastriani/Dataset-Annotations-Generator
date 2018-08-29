@@ -1,0 +1,46 @@
+<annotation>
+  <folder>images</folder>
+  <filename>147 _rotate[10].png</filename>
+  <segmented/>
+  <size>
+    <width>571</width>
+    <height>520</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>31</xmin>
+      <ymin>229</ymin>
+      <xmax>127</xmax>
+      <ymax>300</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>175</xmin>
+      <ymin>331</ymin>
+      <xmax>231</xmax>
+      <ymax>378</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>361</xmin>
+      <ymin>48</ymin>
+      <xmax>425</xmax>
+      <ymax>117</ymax>
+    </bndbox>
+  </object>
+</annotation>

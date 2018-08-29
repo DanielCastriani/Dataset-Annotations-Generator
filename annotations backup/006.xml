@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>006.png</filename>
+  <segmented/>
+  <size>
+    <width>672</width>
+    <height>646</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>462</xmin>
+      <ymin>175</ymin>
+      <xmax>559</xmax>
+      <ymax>248</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>464</xmin>
+      <ymin>247</ymin>
+      <xmax>551</xmax>
+      <ymax>323</ymax>
+    </bndbox>
+  </object>
+</annotation>

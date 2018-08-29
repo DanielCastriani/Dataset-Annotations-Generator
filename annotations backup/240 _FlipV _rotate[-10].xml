@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>240 _FlipV _rotate[-10].png</filename>
+  <segmented/>
+  <size>
+    <width>513</width>
+    <height>373</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_de_perigo</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>159</xmin>
+      <ymin>85</ymin>
+      <xmax>190</xmax>
+      <ymax>157</ymax>
+    </bndbox>
+  </object>
+</annotation>

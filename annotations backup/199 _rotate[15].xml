@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>199 _rotate[15].png</filename>
+  <segmented/>
+  <size>
+    <width>833</width>
+    <height>521</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>de_preferencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>302</xmin>
+      <ymin>171</ymin>
+      <xmax>358</xmax>
+      <ymax>213</ymax>
+    </bndbox>
+  </object>
+</annotation>

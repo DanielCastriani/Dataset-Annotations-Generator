@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>278.png</filename>
+  <segmented/>
+  <size>
+    <width>665</width>
+    <height>567</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>211</xmin>
+      <ymin>138</ymin>
+      <xmax>289</xmax>
+      <ymax>221</ymax>
+    </bndbox>
+  </object>
+</annotation>

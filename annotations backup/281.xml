@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>281.png</filename>
+  <segmented/>
+  <size>
+    <width>1040</width>
+    <height>676</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>688</xmin>
+      <ymin>127</ymin>
+      <xmax>745</xmax>
+      <ymax>179</ymax>
+    </bndbox>
+  </object>
+</annotation>

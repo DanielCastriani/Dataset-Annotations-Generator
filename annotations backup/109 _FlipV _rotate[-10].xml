@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>109 _FlipV _rotate[-10].png</filename>
+  <segmented/>
+  <size>
+    <width>664</width>
+    <height>432</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>422</xmin>
+      <ymin>117</ymin>
+      <xmax>473</xmax>
+      <ymax>164</ymax>
+    </bndbox>
+  </object>
+</annotation>

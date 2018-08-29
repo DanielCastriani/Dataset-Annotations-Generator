@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>103 _FlipV.png</filename>
+  <segmented/>
+  <size>
+    <width>627</width>
+    <height>568</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>335</xmin>
+      <ymin>169</ymin>
+      <xmax>384</xmax>
+      <ymax>213</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>225 _rotate[-15].png</filename>
+  <segmented/>
+  <size>
+    <width>395</width>
+    <height>422</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>marcador_alimnhamento</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>234</xmin>
+      <ymin>132</ymin>
+      <xmax>277</xmax>
+      <ymax>179</ymax>
+    </bndbox>
+  </object>
+</annotation>
