@@ -40,9 +40,11 @@ def count():
 
 def verifica_xml_img():
     """
+    Retorna
         n = numero de arquivos
         log = paths
     """
+    exts = ['png','PNG','jpg','JPG']
     log = ''
     n = 0
     ann_dir = 'annotations'     
@@ -52,12 +54,18 @@ def verifica_xml_img():
 
     for _, f_xml in enumerate(os.scandir(ann_dir)):
         n +=1
-        verifica = os.path.join(img_dir,f_xml.name.replace('.xml','.png'))
-        if not os.path.exists(verifica):
+        existe = False
+        for ext in exts:
+            verifica = os.path.join(img_dir,f_xml.name.replace('.xml','.' + ext))
+            if os.path.exists(verifica):
+                existe = True
+                break
+        
+        if not existe:
             log += f_xml.path + '\n'
-            log += verifica + '\n'
-            log += '-----------------------------------------------'
+            log += '-----------------------------------------------\n'
             salva = True
+    
     if salva:
         with open('log','w') as log_file:
             log_file.write(log)
@@ -67,6 +75,7 @@ def verifica_xml_img():
 if __name__ == '__main__':
     s = ''
     
+    n,s = verifica_xml_img()
     
     if len(sys.argv) == 1:
         print('1 - Contar Classes')
