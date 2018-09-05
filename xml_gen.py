@@ -8,6 +8,12 @@ from matplotlib.widgets import RectangleSelector
 import xml_writer as w_xml
 import class_counter as c_count
 
+exts = ['png','PNG','jpg','JPG']
+
+image_folder = 'images'
+savedir = 'annotations'
+obj = 'placa'
+
 verbose = False
 v_c_count = False
 img = None
@@ -16,10 +22,6 @@ br_list = []
 object_list = []
 tl = (0,0)
 br = (0,0)
-
-image_folder = 'images'
-savedir = 'annotations'
-obj = 'placa'
 
 def line_select_callback(clk,rls):
     global tl
@@ -38,9 +40,10 @@ def onkeypress(event):
     global tl
     global br
     global img
-    
+    global exts
+
     if event.key == 'q' or event.key == 'escape':
-        w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir,verbose)       
+        w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir,exts,verbose)       
         tl_list = []
         br_list = []
         img = None
@@ -106,8 +109,14 @@ if __name__ == '__main__':
 
     for n,image_file in enumerate(os.scandir(image_folder)):
         img = image_file
-        verifica_existe = os.path.join(savedir,img.name.replace('png','xml'))
-        if os.path.exists(verifica_existe):
+        verifica_existe = False
+
+        for ext in exts:            
+            if os.path.exists(os.path.join(savedir,img.name.replace(ext,'xml'))):
+                verifica_existe = True
+                break
+
+        if verifica_existe:
             continue
 
         tl_list = []

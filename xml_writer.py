@@ -4,7 +4,7 @@ import cv2
 from lxml import etree
 import xml.etree.cElementTree as ET
 
-def write_xml(folder,img,objects,tl,br,savedir,verbose):
+def write_xml(folder,img,objects,tl,br,savedir,exts,verbose):
     '''
     folder = pasta da imagem
 
@@ -56,7 +56,13 @@ def write_xml(folder,img,objects,tl,br,savedir,verbose):
     root = etree.fromstring(xml_str)
     xml_str = etree.tostring(root,pretty_print=True)
 
-    save_path = os.path.join(savedir,img.name.replace('png','xml'))
+    ext = 'png'
+    for x in exts:
+        if img.name.endswith(x):
+            ext = x
+            break
+
+    save_path = os.path.join(savedir,img.name.replace(ext,'xml'))
     with open(save_path,'wb') as temp_xml:
         temp_xml.write(xml_str)
     if verbose:
