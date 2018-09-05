@@ -83,9 +83,9 @@ def legenda():
         print('[F5] - Add marcador_alimnhamento')
         print('[F6] - Add marcador_de_perigo')
 
-        print('\n\n[Q] ou [ESQ] - Proxima Imagem')
-
-        print('*Sempre adicionar da esquerda para a direita, e de baixo para cima\n\n')
+        print('\n[Q] ou [ESQ] - Proxima Imagem')
+        print('*Sempre adicionar da esquerda para a direita, e de baixo para cima\n')
+        
     if v_c_count:
         _,_,msg = c_count.count()
         print('_________________________________________________________________')

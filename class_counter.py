@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
 import sys
+import datetime
 
 def find(p,cl,qtd):
 
@@ -19,16 +20,26 @@ def count():
     """
     return classes,QTD,Str
     """
+
+    dt = datetime.datetime(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day).timestamp()
+    
     dir = 'annotations'
     cl = []
     qtd = []
     qtd_arqs = 0
+    qtd_dia = 0
     for _, f_xml in enumerate(os.scandir(dir)):
         if f_xml.name.endswith('xml') == True:
             qtd_arqs += 1
             tree = ET.parse(f_xml)
             root = tree.getroot()
-            find(root,cl,qtd)       
+            find(root,cl,qtd)     
+
+            dt_modificado = os.path.getmtime(f_xml)
+            
+            if dt_modificado > dt:
+                qtd_dia += 1
+            
     s = ''
     total_qtd = 0 
     for i in range(len(qtd)):
@@ -36,6 +47,7 @@ def count():
        total_qtd += qtd[i]
     s += '\nTotal de objetos:' + str(total_qtd)
     s += '\nTotal de arquivos:' + str(qtd_arqs)
+    s += '\nTotal de arquivos no dia:' + str(qtd_dia)
     return cl,qtd,s
 
 def verifica_xml_img():
@@ -75,8 +87,6 @@ def verifica_xml_img():
 if __name__ == '__main__':
     s = ''
     
-    n,s = verifica_xml_img()
-    
     if len(sys.argv) == 1:
         print('1 - Contar Classes')
         print('2 - Verifica xml x imagem')
@@ -86,5 +96,4 @@ if __name__ == '__main__':
         elif sys.argv[1] == '2':
             n,s = verifica_xml_img()
             print('{} arquivos verificados'.format(n))
-    
     print(s)
