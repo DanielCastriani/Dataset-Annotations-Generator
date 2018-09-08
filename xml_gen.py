@@ -7,6 +7,7 @@ import cv2
 from matplotlib.widgets import RectangleSelector
 import xml_writer as w_xml
 import class_counter as c_count
+import numpy as np
 
 exts = ['png','PNG','jpg','JPG']
 
@@ -16,6 +17,8 @@ obj = 'placa'
 
 verbose = False
 v_c_count = False
+preview = False
+
 img = None
 tl_list = []
 br_list = []
@@ -29,6 +32,8 @@ def line_select_callback(clk,rls):
 
     tl = (int(clk.xdata),int(clk.ydata))
     br = (int(rls.xdata),int(rls.ydata))
+    if preview:
+        pass
 
 def toggle_selector(event):
     toggle_selector.RS.set_active(True)
@@ -95,15 +100,25 @@ def legenda():
 if __name__ == '__main__':
     
     if len(sys.argv) == 1:
-        print("Parametros: -v -c")
+        print("Parametros")
+        print("\t-v \tSaída")
+        print("\t-c \tContador de classes")
+        print("\t-p \tPreview\n")
+        print("\t-a \tTodas as opções")
 
     for i in range(0,len(sys.argv)):
         if sys.argv[i] == '-v':
             verbose = True
-            print('Verbose ativado')
-        if sys.argv[i] == '-c':
+        elif sys.argv[i] == '-c':
             v_c_count = True
-            print('Class Count ativado')
+        elif sys.argv[i] == '-p':
+            preview = True
+        elif sys.argv[i] == '-a':
+            verbose = True
+            v_c_count = True
+            preview = True
+
+
     
     legenda()
 
