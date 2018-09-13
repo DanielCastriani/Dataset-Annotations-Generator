@@ -18,6 +18,9 @@ obj = 'placa'
 verbose = False
 v_c_count = False
 preview = False
+reverso = False
+
+skp = 0
 
 img = None
 tl_list = []
@@ -46,9 +49,16 @@ def onkeypress(event):
     global br
     global img
     global exts
+    global skp
 
     if event.key == 'q' or event.key == 'escape':
         w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir,exts,verbose)       
+        tl_list = []
+        br_list = []
+        img = None
+        plt.close()
+    elif event.key == ' ':
+        skp = 9    
         tl_list = []
         br_list = []
         img = None
@@ -76,8 +86,10 @@ def onkeypress(event):
             tl_list.append(tl)
             br_list.append(br)
 
-        if verbose:
-            print(object_list[-1],'\ttl:',tl,'\tbr:',br)
+        if verbose and add:
+            print(object_list[-1],'\ttl:',tl,'\tbr:',br,'{} x {}'.format(br[0]-tl[0],br[1]-tl[1]))
+
+
 
 def legenda():
     if verbose:
@@ -89,6 +101,8 @@ def legenda():
         print('[F6] - Add marcador_de_perigo')
 
         print('\n[Q] ou [ESQ] - Proxima Imagem')
+        print('[space] - Pula 9 imagens')
+        print('[F12] - Sair')
         print('*Sempre adicionar da esquerda para a direita, e de baixo para cima\n')
         
     if v_c_count:
@@ -96,33 +110,60 @@ def legenda():
         print('_________________________________________________________________')
         print(msg)
         print('_________________________________________________________________')
+        print(skp)
+
+def order_by(elm):
+    return elm[1].name
+def help():
+    print("Parametros")
+    print("\t-v \tSaída")
+    print("\t-c \tContador de classes")
+    print("\t-p \tPreview\n")
+    print("\t-a \tTodas as opções")
+    print("\t-r \tOrdenar reverso")
+    print("\t-n=[num]\t pula [num] arquivo(s)")
 
 if __name__ == '__main__':
     
     if len(sys.argv) == 1:
-        print("Parametros")
-        print("\t-v \tSaída")
-        print("\t-c \tContador de classes")
-        print("\t-p \tPreview\n")
-        print("\t-a \tTodas as opções")
+        help()
 
     for i in range(0,len(sys.argv)):
+        if sys.argv[i] == '-h':
+            help()
+            exit()
         if sys.argv[i] == '-v':
             verbose = True
         elif sys.argv[i] == '-c':
             v_c_count = True
         elif sys.argv[i] == '-p':
             preview = True
+        elif sys.argv[i] == '-r':
+                reverso = True
         elif sys.argv[i] == '-a':
             verbose = True
             v_c_count = True
             preview = True
-
+        elif sys.argv[i].startswith('-n='):
+            try:
+                skp = int(sys.argv[i].split('=')[-1])
+            except ValueError as ex:
+                print('O parametro está incorreto utiliza -h')
+                exit()
 
     
     legenda()
 
-    for n,image_file in enumerate(os.scandir(image_folder)):
+    sc_dir = os.scandir(image_folder)
+    
+    all_files = sorted(enumerate(sc_dir),key=order_by,reverse=reverso)
+
+    for n,image_file in all_files:
+        
+        if skp > 0:
+            skp -= 1
+            continue
+
         img = image_file
         verifica_existe = False
 
@@ -141,7 +182,7 @@ if __name__ == '__main__':
         br = (0,0)
 
         if verbose:
-            print('File:',img.name)
+            print('File:['+str(n)+'] - '+img.name)
 
         if not os.path.isdir(savedir):
             os.mkdir(savedir)

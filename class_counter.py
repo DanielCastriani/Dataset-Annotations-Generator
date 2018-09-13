@@ -20,6 +20,7 @@ def count():
     """
     return classes,QTD,Str
     """
+    qtd_gerada = 8
 
     dt = datetime.datetime(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day).timestamp()
     
@@ -42,11 +43,12 @@ def count():
             
     s = ''
     total_qtd = 0 
+    s += 'Classe [real ,real x ' + str(qtd_gerada) + ']' + '\n\n'
     for i in range(len(qtd)):
-       s+= cl[i]+':'+str(qtd[i])+'\n'
+       s+= cl[i]+'\t['+str(qtd[i])+','+str(qtd[i] * qtd_gerada)+']\n'
        total_qtd += qtd[i]
-    s += '\nTotal de objetos:' + str(total_qtd)
-    s += '\nTotal de arquivos:' + str(qtd_arqs)
+    s += '\nTotal de objetos:' + str(total_qtd) + ' / ' + str(total_qtd * qtd_gerada)
+    s += '\nTotal de arquivos:' + str(qtd_arqs)+ ' / ' + str(qtd_arqs * qtd_gerada)
     s += '\nTotal de arquivos no dia:' + str(qtd_dia)
     return cl,qtd,s
 
