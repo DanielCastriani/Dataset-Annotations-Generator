@@ -24,10 +24,11 @@ img_file = ""
 xml_file = ""
 
 skp = 0
-qtd = 0
+qtd = 1
 
 def onkeypress(event):
     global img_file,xml_file
+    global qtd
     if event.key == 'q':
         exit()
     elif event.key == ' ':
@@ -35,7 +36,11 @@ def onkeypress(event):
     elif event.key == 'f1':        
         os.system('mv {old} {new}'.format(old = xml_file,new = trash_xml))
         os.system('mv {old} {new}'.format(old = img_file.path,new = trash_img))
-
+        qtd -= 1
+        plt.close()
+    elif event.key == 'f5':        
+        os.system('mv {old} {new}'.format(old = xml_file,new = trash_xml))
+        qtd -=1
         plt.close()
 
 def getCor(label):
@@ -64,29 +69,40 @@ def exibe_bound_box(image,xml_file):
         br = int(bb.find('xmax').text), int(bb.find('ymax').text)
 
         cor = getCor(lb)
-        image = cv2.rectangle(image, tl, br, cor, 3)
-        image = cv2.putText(image, lb, tl, cv2.FONT_HERSHEY_COMPLEX, 1, cor, 2)
+        pos_txt = (tl[0],tl[1] - 5)
+        image = cv2.rectangle(image, tl, br, cor, 2)
+        image = cv2.putText(image, lb, pos_txt, cv2.FONT_HERSHEY_COMPLEX, 0.5, cor, 1)
 
     return image
 
 def legenda():
-    os.system('clear')
-
     print('_________________________________________________________________')
     print('[Space] - Proxima imagem')
-    print('[f1] - Mover para a pasta trash')
+    print('[F1] - Mover imagem e xml para a pasta trash')
+    print('[F5] - Mover xml para a pasta trash')
+    print('[Q] - Sair')
     _,_,msg = c_count.count()
     print('_________________________________________________________________')
     print(msg)
     print('_________________________________________________________________')
     print('N: ',qtd)
 
+def help():    
+    print('Parametros')
+    print("\t-h \thelp")
+    print("\t-l \tultimo (arquivo log_verifica.txt)")
+    print("\tn=[num]\t pula [num] arquivo(s)")
+
 def order_by(elm):
     return elm[1].name
     
 if __name__ == '__main__':
+    os.system('clear')
 
-    for i in range(0,len(sys.argv)):
+    if len(sys.argv) == 1:
+        help()
+
+    for i in range(1,len(sys.argv)):
         if sys.argv[i].startswith('n='):
             try:
                 skp = int(sys.argv[i].split('=')[-1])
@@ -95,6 +111,22 @@ if __name__ == '__main__':
                 print('O parametro está incorreto')
                 print("\tn=[num]\t pula [num] arquivo(s)")
                 exit()      
+        elif sys.argv[i] == '-l':
+            if os.path.exists('log_verifica.txt'):
+                try:
+                    with open('log_verifica.txt','r') as f_log:
+                        skp = int(f_log.readline())
+                        qtd = skp
+                except IOError as ex:
+                    print('Erro:' + ex)
+            else:
+                print('arquivo log_verifica.txt não existe')
+        elif sys.argv[i] == '-h':
+            help()
+            exit()
+        else:
+            print('parametro não existe, utilize -h')
+            exit()
 
     if not os.path.isdir(trash_dir):
         os.mkdir(trash_dir)
@@ -130,12 +162,7 @@ if __name__ == '__main__':
         if skp > 0:
             skp -= 1
             continue
-        
-        qtd += 1
-        with open('log.txt','w') as f_log:
-            f_log.write(str(qtd) + "\n")
-            
-        
+
         print('File:['+str(n)+'] - '+img_file.name)
 
         fig, ax = plt.subplots(1)        
@@ -151,4 +178,9 @@ if __name__ == '__main__':
         key = plt.connect('key_press_event',onkeypress)
         plt.show()
 
+        qtd += 1
+        with open('log_verifica.txt','w') as f_log:
+            f_log.write(str(qtd))
+
+        os.system('clear')
         legenda()
