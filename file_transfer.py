@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 import cv2
 from lxml import etree
 from EfxUtil import Efx
+import time
 
 qtd = 0
 output = ''
@@ -33,21 +34,22 @@ def gera_arquivo(xml_tree,img):
     cv2.imwrite(ni,img)
 
     qtd += 1
-
+# alterar prv para a quantidade de transformaçes
+prv = 4
 def transformacao(xml,image_path):
     img_efx = Efx(image_path)
 
     #Brilho
     gera_arquivo(xml,img_efx.filter_brightnes_contrast(30,1))
     gera_arquivo(xml,img_efx.filter_brightnes_contrast(20,1))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(-20,1))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(-30,1))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(-20,1))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(-30,1))
 
     #Contraste
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.7))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.7))
     gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.8))
     gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.2))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.3))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.3))
 
 
     
@@ -92,6 +94,8 @@ if __name__ == '__main__':
         for _,_ in enumerate(os.scandir(xml_folder)):
             qtd_files += 1
 
+        t_ini = time.time() * 1000
+
         for n,image_file in enumerate(os.scandir(image_folder)):
             img = image_file
             xml_path = os.path.join(xml_folder,img.name.replace('png','xml'))
@@ -132,7 +136,10 @@ if __name__ == '__main__':
                     qtd+=1
                     qtd_arq+=1
                     transformacao(tree,ni)
-                    print(str(qtd) + "\t"+ str(qtd_arq) +"/" + str(qtd_files))
+                    print(str(qtd) + "\t"+ str(qtd_arq) +"/" + str(qtd_files) + "\t\t\tpreview(qtd*" + str(prv)+ "):" + str(qtd_files + qtd_files*prv))
+                    
+                    ms = time.time() * 1000 - t_ini
+                    print(str(ms/1000) + " s")
                     print('------------------------------------------')
                 except IOError as err:
                     log += '--------------------------------------\n'+'Error Message:' + err.strerror+'\n'+'files\n' + xml_path + '\n'+ img_path + '\n'+'--------------------------------------'
