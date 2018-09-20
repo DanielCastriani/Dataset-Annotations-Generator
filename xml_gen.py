@@ -19,8 +19,12 @@ verbose = False
 v_c_count = False
 preview = False
 reverso = False
+skp_nome_f = False
+skp_nome = ""
 
 skp = 0
+qtd = 0
+
 
 img = None
 tl_list = []
@@ -50,6 +54,8 @@ def onkeypress(event):
     global img
     global exts
     global skp
+    global skp_nome
+    global skp_nome_f
 
     if event.key == 'q' or event.key == 'escape':
         w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir,exts,verbose)       
@@ -57,11 +63,15 @@ def onkeypress(event):
         br_list = []
         img = None
         plt.close()
-    elif event.key == ' ':
+    elif event.key == 'enter':
         skp = 9    
         tl_list = []
         br_list = []
         img = None
+        plt.close()
+    elif event.key == ' ':
+        skp_nome = img.name.split('_rotate')[0]
+        skp_nome_f = True
         plt.close()
     else:
         add = True
@@ -101,7 +111,8 @@ def legenda():
         print('[F6] - Add marcador_de_perigo')
 
         print('\n[Q] ou [ESQ] - Proxima Imagem')
-        print('[space] - Pula 9 imagens')
+        print('[Enter] - Pula 9 imagens')
+        print('[Space] - Pula imagens até inicio do nome ser diferente')
         print('[F12] - Sair')
         print('*Sempre adicionar da esquerda para a direita, e de baixo para cima\n')
         
@@ -110,7 +121,7 @@ def legenda():
         print('_________________________________________________________________')
         print(msg)
         print('_________________________________________________________________')
-        print(skp)
+        print('N: ' + str(qtd))
 
 def order_by(elm):
     return elm[1].name
@@ -121,14 +132,14 @@ def help():
     print("\t-p \tPreview\n")
     print("\t-a \tTodas as opções")
     print("\t-r \tOrdenar reverso")
-    print("\t-n=[num]\t pula [num] arquivo(s)")
+    print("\tn=[num]\t pula [num] arquivo(s)")
 
 if __name__ == '__main__':
     
     if len(sys.argv) == 1:
         help()
 
-    for i in range(0,len(sys.argv)):
+    for i in range(1,len(sys.argv)):
         if sys.argv[i] == '-h':
             help()
             exit()
@@ -144,12 +155,23 @@ if __name__ == '__main__':
             verbose = True
             v_c_count = True
             preview = True
-        elif sys.argv[i].startswith('-n='):
+        elif sys.argv[i].startswith('n='):
             try:
                 skp = int(sys.argv[i].split('=')[-1])
             except ValueError as ex:
                 print('O parametro está incorreto utiliza -h')
                 exit()
+        elif sys.argv[i] == '-l':
+            if os.path.exists('log_xml_gen.txt'):
+                try:
+                    with open('log_xml_gen.txt','r') as f_log:
+                        skp = int(f_log.readline())
+                        qtd = skp
+                except IOError as ex:
+                    print('Erro:' + ex)
+        else:
+            print('parametro não existe, utilize -h')
+            exit()
 
     
     legenda()
@@ -159,7 +181,14 @@ if __name__ == '__main__':
     all_files = sorted(enumerate(sc_dir),key=order_by,reverse=reverso)
 
     for n,image_file in all_files:
-        
+        qtd += 1
+
+        if skp_nome_f:
+            if skp_nome in image_file.name:
+                continue
+            else:
+                skp_nome_f = False
+
         if skp > 0:
             skp -= 1
             continue
@@ -207,6 +236,9 @@ if __name__ == '__main__':
         bbox = plt.connect('key_press_event',toggle_selector)
         key = plt.connect('key_press_event',onkeypress)
         plt.show()
+
+        with open('log_xml_gen.txt','w') as f_log:
+            f_log.write(str(qtd))
         if verbose:
             os.system('clear')
             legenda()
