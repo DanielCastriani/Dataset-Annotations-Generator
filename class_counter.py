@@ -18,7 +18,7 @@ def find(p,cl,qtd):
 
 def count():
     """
-    return classes,QTD,Str
+    return classes,QTD,qtd_arqs_xml,Str
     """
     qtd_gerada = 8
 
@@ -50,7 +50,7 @@ def count():
     s += '\nTotal de objetos:' + str(total_qtd) + ' / ' + str(total_qtd * qtd_gerada)
     s += '\nTotal de arquivos:' + str(qtd_arqs)+ ' / ' + str(qtd_arqs * qtd_gerada)
     s += '\nTotal de arquivos no dia:' + str(qtd_dia)
-    return cl,qtd,s
+    return cl,qtd,qtd_arqs,s
 
 def verifica_xml_img():
     """
@@ -94,7 +94,7 @@ if __name__ == '__main__':
         print('2 - Verifica xml x imagem')
     elif len(sys.argv) == 2:
         if sys.argv[1] == '1':
-            _,_,s = count()
+            _,_,_,s = count()
         elif sys.argv[1] == '2':
             n,s = verifica_xml_img()
             print('{} arquivos verificados'.format(n))

@@ -117,7 +117,7 @@ def legenda():
         print('*Sempre adicionar da esquerda para a direita, e de baixo para cima\n')
         
     if v_c_count:
-        _,_,msg = c_count.count()
+        _,_,_,msg = c_count.count()
         print('_________________________________________________________________')
         print(msg)
         print('_________________________________________________________________')

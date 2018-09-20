@@ -81,11 +81,11 @@ def legenda():
     print('[F1] - Mover imagem e xml para a pasta trash')
     print('[F5] - Mover xml para a pasta trash')
     print('[Q] - Sair')
-    _,_,msg = c_count.count()
+    _,_,qtd_arqs,msg = c_count.count()
     print('_________________________________________________________________')
     print(msg)
     print('_________________________________________________________________')
-    print('N: ',qtd)
+    print('N: ',qtd, '/',qtd_arqs)
 
 def help():    
     print('Parametros')
