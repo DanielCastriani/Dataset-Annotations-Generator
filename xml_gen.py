@@ -8,6 +8,7 @@ from matplotlib.widgets import RectangleSelector
 import xml_writer as w_xml
 import class_counter as c_count
 import numpy as np
+import Util
 
 exts = ['png','PNG','jpg','JPG']
 
@@ -25,13 +26,17 @@ skp_nome = ""
 skp = 0
 qtd = 0
 
-
 img = None
 tl_list = []
 br_list = []
 object_list = []
 tl = (0,0)
 br = (0,0)
+
+fig = None
+ax = None
+image = None
+
 
 def line_select_callback(clk,rls):
     global tl
@@ -56,6 +61,7 @@ def onkeypress(event):
     global skp
     global skp_nome
     global skp_nome_f
+    global image
 
     if event.key == 'q' or event.key == 'escape':
         w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir,exts,verbose)       
@@ -95,6 +101,8 @@ def onkeypress(event):
         if add == True:
             tl_list.append(tl)
             br_list.append(br)
+            Util.exibe_imagem_xy(image,object_list,tl_list,br_list,ax,fig)
+            
 
         if verbose and add:
             print(object_list[-1],'\ttl:',tl,'\tbr:',br,'{} x {}'.format(br[0]-tl[0],br[1]-tl[1]))
@@ -110,6 +118,7 @@ def legenda():
         print('[F5] - Add marcador_alimnhamento')
         print('[F6] - Add marcador_de_perigo')
 
+        Util.plt_legenda()
         print('\n[Q] ou [ESQ] - Proxima Imagem')
         print('[Enter] - Pula 9 imagens')
         print('[Space] - Pula imagens até inicio do nome ser diferente')

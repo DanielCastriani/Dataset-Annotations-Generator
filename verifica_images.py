@@ -9,9 +9,9 @@ import xml_writer as w_xml
 import class_counter as c_count
 import numpy as np
 import xml.etree.ElementTree as ET
+import Util
 
 exts = ['png','PNG','jpg','JPG']
-colors = [tuple([0,255,0]),tuple([0,255,255]),tuple([0,0,255]),tuple([255,0,0]),tuple([255,255,255]),tuple([255,126,0])]
 
 image_folder = 'images'
 xml_folder = 'annotations'
@@ -25,6 +25,7 @@ xml_file = ""
 
 skp = 0
 qtd = 1
+fig = None
 
 def onkeypress(event):
     global img_file,xml_file
@@ -42,49 +43,22 @@ def onkeypress(event):
         os.system('mv {old} {new}'.format(old = xml_file,new = trash_xml))
         qtd -=1
         plt.close()
-
-def getCor(label):
-    if label == "regulamentacao":
-        return colors[0]
-    elif label == "advertencia":
-        return colors[1]
-    elif label == "pare":
-        return colors[2]
-    elif label == "de_preferencia":
-        return colors[3]
-    elif label == "marcador_alimnhamento":
-        return colors[4]
-    elif label == "marcador_de_perigo":
-        return colors[5]
-
-
-def exibe_bound_box(image,xml_file):
-    tree = ET.parse(xml_file)
-    root = tree.getroot()
-
-    for obj in root.iter('object'):
-        lb = obj.find('name').text            
-        bb = obj.find('bndbox')
-        tl = (int(bb.find('xmin').text), int(bb.find('ymin').text))
-        br = int(bb.find('xmax').text), int(bb.find('ymax').text)
-
-        cor = getCor(lb)
-        pos_txt = (tl[0],tl[1] - 5)
-        image = cv2.rectangle(image, tl, br, cor, 2)
-        image = cv2.putText(image, lb, pos_txt, cv2.FONT_HERSHEY_COMPLEX, 0.5, cor, 1)
-
-    return image
+    elif event.key == 'enter':
+        Util.exibe_imagem(img_file,xml_file,ax,fig)
+ 
 
 def legenda():
-    print('_________________________________________________________________')
+    Util.hb1()
     print('[Space] - Proxima imagem')
     print('[F1] - Mover imagem e xml para a pasta trash')
     print('[F5] - Mover xml para a pasta trash')
+    print('[Enter] - Recarregar imagem')
+    Util.plt_legenda()
     print('[Q] - Sair')
     _,_,qtd_arqs,msg = c_count.count()
-    print('_________________________________________________________________')
+    Util.hb1()
     print(msg)
-    print('_________________________________________________________________')
+    Util.hb1()
     print('N: ',qtd, '/',qtd_arqs)
 
 def help():    
@@ -170,12 +144,8 @@ if __name__ == '__main__':
         mng = plt.get_current_fig_manager()
         mng.window.showMaximized()
         
-        image = cv2.imread(img_file.path)
-        image = exibe_bound_box(image,xml_file)
-        image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-        ax.imshow(image)
-
         key = plt.connect('key_press_event',onkeypress)
+        Util.exibe_imagem(img_file,xml_file,ax,fig)
         plt.show()
 
         qtd += 1
@@ -184,3 +154,4 @@ if __name__ == '__main__':
 
         os.system('clear')
         legenda()
+
