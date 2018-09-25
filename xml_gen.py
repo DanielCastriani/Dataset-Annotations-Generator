@@ -27,6 +27,7 @@ skp = 0
 qtd = 0
 
 img = None
+n = 0
 tl_list = []
 br_list = []
 object_list = []
@@ -63,7 +64,7 @@ def onkeypress(event):
     global skp_nome_f
     global image
 
-    if event.key == 'q' or event.key == 'escape':
+    if event.key == 'escape':
         w_xml.write_xml(image_folder,img,object_list,tl_list,br_list,savedir,exts,verbose)       
         tl_list = []
         br_list = []
@@ -79,7 +80,28 @@ def onkeypress(event):
         skp_nome = img.name.split('_rotate')[0]
         skp_nome_f = True
         plt.close()
-    else:
+    elif event.key == '=':
+        tl_list = []
+        br_list = []
+        object_list = []    
+        Util.exibe_imagem_xy(image,object_list,tl_list,br_list,ax,fig)
+        if verbose:
+            os.system('clear')
+            legenda()      
+    elif event.key == '-' and len(object_list) > 0:
+        tl_list.pop()
+        br_list.pop()
+        object_list.pop()    
+        Util.exibe_imagem_xy(image,object_list,tl_list,br_list,ax,fig)
+        if verbose:
+            os.system('clear')
+            legenda()       
+            for i in range(0,len(object_list)):
+                print(object_list[i],'\ttl:',tl_list[i],'\tbr:',br_list[i],'{} x {}'.format(br_list[i][0] - tl_list[i][0],br_list[i][1] - tl_list[i][1]))
+    elif event.key == 'q' or event.key == 'f12' :
+        exit()          
+    
+    elif tl != (0,0) or br != (0,0):
         add = True
         if event.key == 'f1':
             object_list.append('regulamentacao')
@@ -93,8 +115,6 @@ def onkeypress(event):
             object_list.append('marcador_alimnhamento')
         elif event.key == 'f6':
             object_list.append('marcador_de_perigo')
-        elif event.key == 'f12':
-            exit()
         else:
             add = False
             
@@ -102,10 +122,16 @@ def onkeypress(event):
             tl_list.append(tl)
             br_list.append(br)
             Util.exibe_imagem_xy(image,object_list,tl_list,br_list,ax,fig)
-            
 
-        if verbose and add:
-            print(object_list[-1],'\ttl:',tl,'\tbr:',br,'{} x {}'.format(br[0]-tl[0],br[1]-tl[1]))
+            if verbose and add:
+                os.system('clear')
+                legenda()       
+                for i in range(0,len(object_list)):
+                    print(object_list[i],'\ttl:',tl_list[i],'\tbr:',br_list[i],'{} x {}'.format(br_list[i][0] - tl_list[i][0],br_list[i][1] - tl_list[i][1]))
+
+            tl = (0,0)
+            br = (0,0)
+            
 
 
 
@@ -119,11 +145,13 @@ def legenda():
         print('[F6] - Add marcador_de_perigo')
 
         Util.plt_legenda()
-        print('\n[Q] ou [ESQ] - Proxima Imagem')
+        print('\n[ESQ] - Proxima Imagem')
         print('[Enter] - Pula 9 imagens')
         print('[Space] - Pula imagens até inicio do nome ser diferente')
-        print('[F12] - Sair')
-        print('*Sempre adicionar da esquerda para a direita, e de baixo para cima\n')
+        print('[=] - Limpa lista')
+        print('[-] - Remove ultimo')
+        print('[Q] ou [F12] - Sair')
+        print('*Sempre adicionar da esquerda para a direita, e de baixo para cima')
         
     if v_c_count:
         _,_,_,msg = c_count.count()
@@ -131,6 +159,9 @@ def legenda():
         print(msg)
         print('_________________________________________________________________')
         print('N: ' + str(qtd))
+    
+    if verbose and img is not None:
+        print('File:['+str(n)+'] - '+img.name)
 
 def order_by(elm):
     return elm[1].name
@@ -183,7 +214,6 @@ if __name__ == '__main__':
             exit()
 
     
-    legenda()
 
     sc_dir = os.scandir(image_folder)
     
@@ -218,9 +248,10 @@ if __name__ == '__main__':
         object_list = []
         tl = (0,0)
         br = (0,0)
-
+    
         if verbose:
-            print('File:['+str(n)+'] - '+img.name)
+            os.system('clear')
+            legenda()    
 
         if not os.path.isdir(savedir):
             os.mkdir(savedir)
@@ -248,6 +279,3 @@ if __name__ == '__main__':
 
         with open('log_xml_gen.txt','w') as f_log:
             f_log.write(str(qtd))
-        if verbose:
-            os.system('clear')
-            legenda()
