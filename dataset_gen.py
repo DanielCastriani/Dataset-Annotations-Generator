@@ -52,7 +52,8 @@ def transformacao(xml,image_path):
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.3))
 
 
-    
+def order_by(elm):
+    return elm[1].name
 
 if __name__ == '__main__':
     
@@ -96,7 +97,7 @@ if __name__ == '__main__':
 
         t_ini = time.time() * 1000
 
-        for n,image_file in enumerate(os.scandir(image_folder)):
+        for n,image_file in sorted(enumerate(os.scandir(image_folder)),key=order_by):
             img = image_file
             xml_path = os.path.join(xml_folder,img.name.replace('png','xml'))
             if os.path.exists(xml_path):
