@@ -21,6 +21,8 @@ else:
 
 
 x = 0
+p = round(total_xml_files / 100)
+
 for n,image_file in enumerate(os.scandir(img_folder)):
     img_name = image_file.name
     xml_name = image_file.name.split('.')[0] + '.xml'
@@ -29,7 +31,8 @@ for n,image_file in enumerate(os.scandir(img_folder)):
 
     if os.path.exists(xml_path):
         x += 1
-        print('{}/{}\n'.format(x,total_xml_files))
+        if x % p == 0:
+            print('{}/{} {}%\n'.format(x,total_xml_files, (x*100/total_xml_files)))
         
         n_xml_file = os.path.join(n_folder,xml_path)
         n_img_path = os.path.join(n_folder,image_file.path)
@@ -37,8 +40,16 @@ for n,image_file in enumerate(os.scandir(img_folder)):
         copy2(image_file.path,n_img_path)
         copy2(xml_path,n_xml_file)
 
+        err = False
         if not os.path.exists(n_xml_file):
             print('Erro ao copiar {}'.format(n_xml_file))
+            err = True
         if not os.path.exists(n_img_path):
             print('Erro ao copiar {}'.format(n_img_path))
+            err = True
+
+        if err:
+            x -= 1
+print('{}/{} {}%\n'.format(x,total_xml_files, (x*100/total_xml_files)))
+print('Fim')
             
