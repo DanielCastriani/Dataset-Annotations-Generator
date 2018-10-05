@@ -69,12 +69,15 @@ def help():
     print("\t-h \thelp")
     print("\t-l \tultimo (arquivo log_verifica.txt)")
     print("\tn=[num]\t pula [num] arquivo(s)")
+    print("\tf=chopp_workspace\tInicial Folder")
 
 def order_by(elm):
     return elm[1].name
     
 if __name__ == '__main__':
     os.system('clear')
+
+    sys.argv.append('f=cropp_workspace/output/')
 
     if len(sys.argv) == 1:
         help()
@@ -87,7 +90,21 @@ if __name__ == '__main__':
             except ValueError as ex:
                 print('O parametro está incorreto')
                 print("\tn=[num]\t pula [num] arquivo(s)")
-                exit()      
+                exit()  
+        elif sys.argv[i].startswith('f='):
+            fdr = sys.argv[i].split('=')[-1]
+            image_folder = os.path.join(fdr,image_folder)
+            xml_folder = os.path.join(fdr,xml_folder)
+            if not os.path.exists(fdr):
+                print('Pasta {} não existe'.format(fdr))
+                exit()
+            if not os.path.exists(image_folder):
+                print('Pasta images não existe')
+                exit()
+            if not os.path.exists(xml_folder):
+                print('Pasta annotations não existe')
+                exit()
+
         elif sys.argv[i] == '-l':
             if os.path.exists('log_verifica.txt'):
                 try:

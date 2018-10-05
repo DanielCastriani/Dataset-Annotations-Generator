@@ -2,6 +2,8 @@
 import os
 import cv2
 import numpy as np
+import xml.etree.ElementTree as ET
+from lxml import etree
 
 wspace = 'cropp_workspace'
 img_folder = os.path.join(wspace,'images')
@@ -92,7 +94,48 @@ def getBndbox(img):
 
     return (x1,y1),(x2,y2)
 
+def edit_xml(xml_path,xml_file_name,img,tlc,brc):
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+
+    w,h,_ = img.shape
+
+    size = root.find('size')
+    size.find('width').text = str(w)
+    size.find('height').text = str(h)
+    for obj in root.iter('object'):
+        bb = obj.find('bndbox')
+        tl = (int(bb.find('xmin').text), int(bb.find('ymin').text))
+        br = (int(bb.find('xmax').text), int(bb.find('ymax').text))
+
+        if tl[0] > w or br[0] > w:
+            return False
+        
+        if tl[1] > h or br[1] > h:
+            return False
+
+        x1 = tl[0] - tlc[0]
+        y1 = tl[1] - tlc[1]
+        if x1 <= 0 or y1 <= 0:
+            return False
+
+        bb.find('xmin').text = str(x1)
+        bb.find('ymin').text = str(y1)
+
+        xml_str = ET.tostring(root)
+        root = etree.fromstring(xml_str)
+        xml_str = etree.tostring(root,pretty_print=True)
+
+        with open(os.path.join(ann_n_folder,xml_file_name),'wb') as temp_xml:
+            temp_xml.write(xml_str)
+
+    return True
+
+
+
+
 def run():
+    qtd_err = 0
     for _,image_file in sorted(enumerate(os.scandir(img_folder)),key=order_by):
         img_name = image_file.name
         xml_name = image_file.name.split('.')[0] + '.xml'
@@ -101,18 +144,20 @@ def run():
 
         if 'rotate' in img_name:
             if os.path.exists(xml_path):
-                print(img_name)
 
                 img = cv2.imread(image_file.path)
                 tl,br = getBndbox(img) 
-                
-
                 img = img[tl[1]:br[1] , tl[0]:br[0]]
 
-
                 im_path = os.path.join(img_n_folder,image_file.name)
-                cv2.imwrite(im_path,img)
-            
+                gerou = edit_xml(xml_path,xml_name,img,tl,br)
+                if gerou:
+                    cv2.imwrite(im_path,img)                    
+                    print(img_name)
+                else:
+                    qtd_err += 1
+                    print('[Size Error] - ', im_path)
+    print('QTD error {}'.format(qtd_err))
         
 if __name__ == '__main__':
 
