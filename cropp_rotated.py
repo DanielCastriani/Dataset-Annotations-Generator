@@ -98,7 +98,7 @@ def edit_xml(xml_path,xml_file_name,img,tlc,brc):
     tree = ET.parse(xml_path)
     root = tree.getroot()
 
-    w,h,_ = img.shape
+    h,w,_ = img.shape
 
     size = root.find('size')
     size.find('width').text = str(w)
@@ -108,26 +108,32 @@ def edit_xml(xml_path,xml_file_name,img,tlc,brc):
         tl = (int(bb.find('xmin').text), int(bb.find('ymin').text))
         br = (int(bb.find('xmax').text), int(bb.find('ymax').text))
 
-        if tl[0] > w or br[0] > w:
-            return False
-        
-        if tl[1] > h or br[1] > h:
-            return False
-
         x1 = tl[0] - tlc[0]
         y1 = tl[1] - tlc[1]
-        if x1 <= 0 or y1 <= 0:
+
+        x2 = br[0] - tlc[0]
+        y2 = br[1] - tlc[1]
+
+        if x1 > w or x2 > w:
+            return False
+        
+        if y1 > h or y2 > h:
+            return False
+
+        if x1 <= 0 or y1 <= 0 or y1 <= 0 or y2 <= 0:
             return False
 
         bb.find('xmin').text = str(x1)
         bb.find('ymin').text = str(y1)
+        bb.find('xmax').text = str(x2)
+        bb.find('ymax').text = str(y2)
+        
+    xml_str = ET.tostring(root)
+    root = etree.fromstring(xml_str)
+    xml_str = etree.tostring(root,pretty_print=True)
 
-        xml_str = ET.tostring(root)
-        root = etree.fromstring(xml_str)
-        xml_str = etree.tostring(root,pretty_print=True)
-
-        with open(os.path.join(ann_n_folder,xml_file_name),'wb') as temp_xml:
-            temp_xml.write(xml_str)
+    with open(os.path.join(ann_n_folder,xml_file_name),'wb') as temp_xml:
+        temp_xml.write(xml_str)
 
     return True
 
@@ -144,12 +150,13 @@ def run():
 
         if 'rotate' in img_name:
             if os.path.exists(xml_path):
-
+                im_path = os.path.join(img_n_folder,image_file.name)
                 img = cv2.imread(image_file.path)
+                
                 tl,br = getBndbox(img) 
                 img = img[tl[1]:br[1] , tl[0]:br[0]]
-
-                im_path = os.path.join(img_n_folder,image_file.name)
+                #cv2.imshow('aa',img)
+                #k = cv2.waitKey(0)
                 gerou = edit_xml(xml_path,xml_name,img,tl,br)
                 if gerou:
                     cv2.imwrite(im_path,img)                    
@@ -167,6 +174,6 @@ if __name__ == '__main__':
         os.mkdir(ann_n_folder)
     else:
         print('{}/ existe, processo abortado!!!'.format(n_folder))
-        #exit()
+        exit()
 
     run()

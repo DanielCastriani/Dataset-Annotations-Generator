@@ -77,8 +77,6 @@ def order_by(elm):
 if __name__ == '__main__':
     os.system('clear')
 
-    sys.argv.append('f=cropp_workspace/output/')
-
     if len(sys.argv) == 1:
         help()
 
