@@ -20,7 +20,7 @@ def count():
     """
     return classes,QTD,qtd_arqs_xml,Str
     """
-    qtd_gerada = 8
+    qtd_gerada = 4
 
     dt = datetime.datetime(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day).timestamp()
     
@@ -79,6 +79,33 @@ def verifica_xml_img():
             log += f_xml.path + '\n'
             log += '-----------------------------------------------\n'
             salva = True
+        else:
+            tree = ET.parse(f_xml)
+            root = tree.getroot()
+            objs = root.findall('object')
+            for obj in objs:
+                bndbx = obj.find('bndbox')
+                try:
+                    xmin = int(bndbx.find('xmin').text)
+                    xmax = int(bndbx.find('xmax').text)
+                    ymin = int(bndbx.find('ymin').text)
+                    ymax = int(bndbx.find('ymax').text)
+                    if xmin > xmax:
+                        salva = True                    
+                        log += f_xml.path + '\n'
+                        log += 'xmin > xmax\n'
+                        log += '-----------------------------------------------\n'    
+                    if ymin > ymax:
+                        salva = True                    
+                        log += f_xml.path + '\n'
+                        log += 'ymin > ymax\n'
+                        log += '-----------------------------------------------\n'                        
+
+                except:
+                    salva = True                    
+                    log += f_xml.path + '\n'
+                    log += 'parse int\n'
+                    log += '-----------------------------------------------\n'    
     
     if salva:
         with open('log','w') as log_file:
@@ -87,8 +114,7 @@ def verifica_xml_img():
     return n,log
 
 if __name__ == '__main__':
-    s = ''
-    
+    s = ''    
     if len(sys.argv) == 1:
         print('1 - Contar Classes')
         print('2 - Verifica xml x imagem')

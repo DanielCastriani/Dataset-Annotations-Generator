@@ -45,6 +45,8 @@ def onkeypress(event):
         plt.close()
     elif event.key == 'enter':
         Util.exibe_imagem(img_file,xml_file,ax,fig)
+    elif event.key == 'e':
+        os.system('gedit ' + xml_file)
  
 
 def legenda():
@@ -52,6 +54,7 @@ def legenda():
     print('[Space] - Proxima imagem')
     print('[F1] - Mover imagem e xml para a pasta trash')
     print('[F5] - Mover xml para a pasta trash')
+    print('[E] - Editar XML')
     print('[Enter] - Recarregar imagem')
     Util.plt_legenda()
     print('[Q] - Sair')
