@@ -3,6 +3,7 @@
 /trash
 /__pycache__
 /output_files
+cropp_workspace/
 log.txt
 log_verifica.txt
 *.zip
