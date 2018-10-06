@@ -4,6 +4,7 @@
 /__pycache__
 /output_files
 cropp_workspace/
+img_to_cnn_output/
 log.txt
 log_verifica.txt
 *.zip
