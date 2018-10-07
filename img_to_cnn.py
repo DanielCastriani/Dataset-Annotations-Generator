@@ -57,6 +57,7 @@ total = len(os.listdir(ann_dir))
 p = round(total/100)
 
 f = 0
+f2 = 0
 for _,img_file in sorted(enumerate(all_files),key=order_by):
     
     img_name = img_file.name
@@ -66,11 +67,15 @@ for _,img_file in sorted(enumerate(all_files),key=order_by):
 
     if not os.path.exists(xml_path):    
         continue
+
+    f += 1
+
+    if '_rotate' in xml_path:
+        continue
         
     extract(xml_path,img_file.path)
-    
-    f += 1
+    f2 += 1
     if f % p == 0:
-        print('{}/{}\t{} %'.format(f,total, round(f*100/total)))
+        print('{}/{} - {} \t{} %'.format(f,total,f2, round(f*100/total)))
 
 print('{}/{}\t{} %'.format(f,total, round(f*100/total)))

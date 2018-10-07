@@ -8,3 +8,4 @@ img_to_cnn_output/
 log.txt
 log_verifica.txt
 *.zip
+print_output/
