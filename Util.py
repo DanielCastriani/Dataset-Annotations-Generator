@@ -2,6 +2,9 @@
 import cv2
 import xml.etree.ElementTree as ET
 
+from Cython.Compiler.ExprNodes import _analyse_name_as_type
+
+
 def hb1():
     print('_________________________________________________________________')
 
@@ -69,3 +72,22 @@ def exibe_imagem_xy(image,labels,tls,brs,ax,fig):
     ax.imshow(image)
     fig.canvas.draw()
     fig.canvas.flush_events()
+
+def replace_classe(str):
+    dict = {
+        "regulamentacao": "placa",
+        "advertencia": "placa",
+        "pare": "placa",
+        "de_preferencia": "placa",
+        "marcador_alimnhamento": "placa",
+        "marcador_de_perigo": "placa"
+    }
+    return dict[str]
+
+if __name__ == '__main__':
+    print(replace_classe('regulamentacao'))
+    print(replace_classe('advertencia'))
+    print(replace_classe('pare'))
+    print(replace_classe('de_preferencia'))
+    print(replace_classe('marcador_alimnhamento'))
+    print(replace_classe('marcador_de_perigo'))

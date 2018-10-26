@@ -1,4 +1,3 @@
-# pylint: disable=E1101
 import sys
 import os
 import xml.etree.ElementTree as ET
@@ -6,12 +5,14 @@ import cv2
 from lxml import etree
 from EfxUtil import Efx
 import time
+import Util
 
 qtd = 0
 output = ''
 image_folder = ''
 xml_folder = ''
 
+replace_classe = True
 
 def gera_arquivo(xml_tree,img):
     global qtd
@@ -126,6 +127,12 @@ if __name__ == '__main__':
                     root = tree.getroot()
 
                     tree.find('filename').text = ni.split('/')[-1]
+                    if replace_classe:
+                        for ob in tree.findall('object'):
+                            obj_name = ob.find('name')
+                            c = obj_name.text
+                            n_obj_name = Util.replace_classe(c)
+                            obj_name.text = n_obj_name
 
                     xml_str = ET.tostring(root)
                     r = etree.fromstring(xml_str)
@@ -137,11 +144,12 @@ if __name__ == '__main__':
                     qtd+=1
                     qtd_arq+=1
                     transformacao(tree,ni)
-                    print(str(qtd) + "\t"+ str(qtd_arq) +"/" + str(qtd_files) + "\t\t\tpreview(qtd*" + str(prv)+ "):" + str(qtd_files + qtd_files*prv))
-                    
-                    ms = time.time() * 1000 - t_ini
-                    print(str(ms/1000) + " s")
-                    print('------------------------------------------')
+                    if qtd % 30 == 0 :
+                        print(str(qtd) + "\t"+ str(qtd_arq) +"/" + str(qtd_files) + "\t\t\tpreview(qtd*" + str(prv)+ "):" + str(qtd_files + qtd_files*prv))
+
+                        ms = time.time() * 1000 - t_ini
+                        print(str(ms/1000) + " s")
+                        print('------------------------------------------')
                 except IOError as err:
                     log += '--------------------------------------\n'+'Error Message:' + err.strerror+'\n'+'files\n' + xml_path + '\n'+ img_path + '\n'+'--------------------------------------'
 

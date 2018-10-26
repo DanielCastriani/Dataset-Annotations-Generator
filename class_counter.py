@@ -3,6 +3,8 @@ import os
 import sys
 import datetime
 
+folder = '.'
+
 def find(p,cl,qtd):
 
     for obj in p.iter('object'):
@@ -24,7 +26,7 @@ def count():
 
     dt = datetime.datetime(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day).timestamp()
     
-    dir = 'annotations'
+    dir = os.path.join(folder,'annotations')
     cl = []
     qtd = []
     qtd_arqs = 0
@@ -61,8 +63,8 @@ def verifica_xml_img():
     exts = ['png','PNG','jpg','JPG']
     log = ''
     n = 0
-    ann_dir = 'annotations'     
-    img_dir = 'images'  
+    ann_dir = os.path.join(folder,'annotations')
+    img_dir = os.path.join(folder,'images')
 
     salva = False
 
@@ -114,12 +116,18 @@ def verifica_xml_img():
     return n,log
 
 if __name__ == '__main__':
-    s = ''    
+    s = ''
+    print(sys.argv)
     if len(sys.argv) == 1:
         print('1 - Contar Classes')
         print('2 - Verifica xml x imagem')
-    elif len(sys.argv) == 2:
+    elif len(sys.argv) >= 2:
         if sys.argv[1] == '1':
+            if len(sys.argv) == 3:
+                folder = sys.argv[2]
+                if not os.path.exists(folder):
+                    print('Path não existe')
+                    exit()
             _,_,_,s = count()
         elif sys.argv[1] == '2':
             n,s = verifica_xml_img()
