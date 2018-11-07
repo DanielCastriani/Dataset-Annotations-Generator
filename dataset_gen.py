@@ -13,7 +13,7 @@ image_folder = ''
 xml_folder = ''
 
 replace_classe = False
-skip_class = ['marcador_alimnhamento','marcador_de_perigo']
+skip_class = ['marcador_alimnhamento','marcador_de_perigo','de_preferencia']
 exts = Util.exts()
 
 def gera_arquivo(xml_tree,img):
@@ -44,14 +44,14 @@ def transformacao(xml,image_path):
 
     #Brilho
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(30,1))
-    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(20,1))
-    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(-20,1))
+    gera_arquivo(xml,img_efx.filter_brightnes_contrast(20,1))
+    gera_arquivo(xml,img_efx.filter_brightnes_contrast(-20,1))
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(-30,1))
 
     #Contraste
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.7))
-    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.8))
-    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.2))
+    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.8))
+    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.2))
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.3))
 
 
