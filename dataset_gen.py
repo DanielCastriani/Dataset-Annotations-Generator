@@ -12,7 +12,9 @@ output = ''
 image_folder = ''
 xml_folder = ''
 
-replace_classe = True
+replace_classe = False
+skip_class = ['marcador_alimnhamento','marcador_de_perigo']
+exts = Util.exts()
 
 def gera_arquivo(xml_tree,img):
     global qtd
@@ -41,15 +43,15 @@ def transformacao(xml,image_path):
     img_efx = Efx(image_path)
 
     #Brilho
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(30,1))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(20,1))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(30,1))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(20,1))
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(-20,1))
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(-30,1))
 
     #Contraste
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.7))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.8))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.2))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.8))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.2))
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.3))
 
 
@@ -80,6 +82,7 @@ if __name__ == '__main__':
 
 
     qtd = 0
+    qtd_skip = 0
 
     if os.path.exists(output): 
         o_img = os.path.join(output,image_folder)
@@ -100,9 +103,31 @@ if __name__ == '__main__':
 
         for n,image_file in sorted(enumerate(os.scandir(image_folder)),key=order_by):
             img = image_file
-            xml_path = os.path.join(xml_folder,img.name.replace('png','xml'))
-            if os.path.exists(xml_path):
+
+            existe = False
+            for i in range(len(exts)):
+                xml_path = os.path.join(xml_folder, img.name.replace(exts[i], 'xml'))
+                if os.path.exists(xml_path):
+                    existe = True
+                    break
+
+            if existe:
                 try:
+                    o_tree = ET.parse(xml_path)
+
+                    skip = False
+                    for obj in o_tree.findall('object'):
+                        for s in skip_class:
+                            if obj.find('name').text == s:
+                                skip = True
+                                break
+                        if skip:
+                            break
+
+                    if skip:
+                        qtd_skip += 1
+                        continue
+
                     img_path = img.path
 
                     if ' ' in img_path:
@@ -152,8 +177,12 @@ if __name__ == '__main__':
                         print('------------------------------------------')
                 except IOError as err:
                     log += '--------------------------------------\n'+'Error Message:' + err.strerror+'\n'+'files\n' + xml_path + '\n'+ img_path + '\n'+'--------------------------------------'
+            else:
+                print("{} n~ao existe".format(xml_path))
+                log += "{} n~ao existe".format(xml_path)
 
-        print('Imgs e xml:'+str(qtd))
+        print('Imgs e xml{}:'.format(qtd))
+        print('pulou {} imagens'.format(qtd_skip))
         if len(log) > 0:
             with open('err_log.txt','w') as f:
                 f.write(log)

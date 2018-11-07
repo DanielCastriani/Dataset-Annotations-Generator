@@ -258,8 +258,8 @@ if __name__ == '__main__':
 
         fig, ax = plt.subplots(1) 
 
-        #mng = plt.get_current_fig_manager()
-        #mng.window.showMaximized()
+        mng = plt.get_current_fig_manager()
+        mng.window.showMaximized()
         
         image = cv2.imread(image_file.path)
         if image is None:

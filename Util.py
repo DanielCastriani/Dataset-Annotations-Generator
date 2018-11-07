@@ -67,7 +67,7 @@ def exibe_imagem_xy(image,labels,tls,brs,ax,fig):
     image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
     for i in range(0,len(labels)):
         cor = getCor(labels[i])   
-        image = cv2.rectangle(image, tls[i], brs[i], cor, 1)    
+        image = cv2.rectangle(image, tls[i], brs[i], cor, 2)    
     image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
     ax.imshow(image)
     fig.canvas.draw()
@@ -83,6 +83,9 @@ def replace_classe(str):
         "marcador_de_perigo": "placa"
     }
     return dict[str]
+
+def exts():
+    return ['png','PNG','jpg','JPG']
 
 if __name__ == '__main__':
     print(replace_classe('regulamentacao'))
