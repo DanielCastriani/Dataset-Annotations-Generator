@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>IMG_1651.JPG</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>364</width>
+    <height>347</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>161</xmin>
+      <ymin>121</ymin>
+      <xmax>213</xmax>
+      <ymax>173</ymax>
+    </bndbox>
+  </object>
+</annotation>

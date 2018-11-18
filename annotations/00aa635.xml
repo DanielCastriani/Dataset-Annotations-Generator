@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>00aa635.jpg</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>382</xmin>
+      <ymin>345</ymin>
+      <xmax>457</xmax>
+      <ymax>434</ymax>
+    </bndbox>
+  </object>
+</annotation>

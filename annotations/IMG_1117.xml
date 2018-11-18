@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>IMG_1117.JPG</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>813</width>
+    <height>741</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>539</xmin>
+      <ymin>140</ymin>
+      <xmax>652</xmax>
+      <ymax>256</ymax>
+    </bndbox>
+  </object>
+</annotation>

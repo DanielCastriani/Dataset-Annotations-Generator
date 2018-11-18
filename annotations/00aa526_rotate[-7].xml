@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>00aa526_rotate[-7].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1802</width>
+    <height>853</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1275</xmin>
+      <ymin>273</ymin>
+      <xmax>1359</xmax>
+      <ymax>355</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1272</xmin>
+      <ymin>356</ymin>
+      <xmax>1344</xmax>
+      <ymax>432</ymax>
+    </bndbox>
+  </object>
+</annotation>

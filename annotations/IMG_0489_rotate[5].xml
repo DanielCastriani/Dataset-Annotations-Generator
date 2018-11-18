@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>IMG_0489_rotate[5].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>905</width>
+    <height>886</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>284</xmin>
+      <ymin>251</ymin>
+      <xmax>410</xmax>
+      <ymax>375</ymax>
+    </bndbox>
+  </object>
+</annotation>

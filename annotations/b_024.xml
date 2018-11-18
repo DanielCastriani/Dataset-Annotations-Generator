@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>b_024.JPG</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>846</width>
+    <height>873</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>656</xmin>
+      <ymin>207</ymin>
+      <xmax>747</xmax>
+      <ymax>303</ymax>
+    </bndbox>
+  </object>
+</annotation>

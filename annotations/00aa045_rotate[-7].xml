@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>00aa045_rotate[-7].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1802</width>
+    <height>853</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1580</xmin>
+      <ymin>164</ymin>
+      <xmax>1708</xmax>
+      <ymax>278</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1577</xmin>
+      <ymin>279</ymin>
+      <xmax>1713</xmax>
+      <ymax>398</ymax>
+    </bndbox>
+  </object>
+</annotation>

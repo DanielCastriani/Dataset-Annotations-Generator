@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>00aa161_rotate[-2].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1883</width>
+    <height>1013</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1357</xmin>
+      <ymin>338</ymin>
+      <xmax>1420</xmax>
+      <ymax>402</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1543</xmin>
+      <ymin>240</ymin>
+      <xmax>1671</xmax>
+      <ymax>371</ymax>
+    </bndbox>
+  </object>
+</annotation>

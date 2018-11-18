@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>IMG_0305.JPG</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>847</width>
+    <height>1054</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>675</xmin>
+      <ymin>359</ymin>
+      <xmax>775</xmax>
+      <ymax>459</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>gp31186.jpg</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>474</xmin>
+      <ymin>328</ymin>
+      <xmax>541</xmax>
+      <ymax>386</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>473</xmin>
+      <ymin>382</ymin>
+      <xmax>538</xmax>
+      <ymax>448</ymax>
+    </bndbox>
+  </object>
+</annotation>

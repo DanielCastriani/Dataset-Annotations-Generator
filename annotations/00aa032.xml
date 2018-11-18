@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>00aa032.jpg</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1172</xmin>
+      <ymin>488</ymin>
+      <xmax>1219</xmax>
+      <ymax>531</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1170</xmin>
+      <ymin>531</ymin>
+      <xmax>1222</xmax>
+      <ymax>579</ymax>
+    </bndbox>
+  </object>
+</annotation>

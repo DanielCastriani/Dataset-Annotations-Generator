@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>00aa577_rotate[2].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1883</width>
+    <height>1013</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1526</xmin>
+      <ymin>136</ymin>
+      <xmax>1661</xmax>
+      <ymax>264</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1539</xmin>
+      <ymin>262</ymin>
+      <xmax>1664</xmax>
+      <ymax>386</ymax>
+    </bndbox>
+  </object>
+</annotation>
