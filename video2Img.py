@@ -1,12 +1,14 @@
 import cv2
 import time,os
 
-video_path = "./RUA02.MP4"
+def order_by(elm):
+    return elm[1].name
 
 ini = time.time()
 
-if os.path.exists(video_path):
-    print('Arquivo não encontrado')
+video_path_folder = './videos'
+
+if os.path.exists(video_path_folder):
 
     if not os.path.exists('video2img'):
         os.mkdir('video2img')
@@ -14,17 +16,27 @@ if os.path.exists(video_path):
     img_path = 'video2img/img_{}.jpg'
     num = 1
 
-    capture = cv2.VideoCapture(video_path)
+    all_files = sorted(enumerate(os.scandir(video_path_folder)), key=order_by, reverse=False)
 
-    ret, frame = capture.read()
+    for _,file in all_files:
+        video_path = file.path
+        capture = cv2.VideoCapture(video_path)
 
-    while True:
-        if ret:
-            cv2.imwrite(img_path.format(num),frame)
-            num += 1
+        print(video_path)
+
+        count = 0
+        length = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
         ret, frame = capture.read()
 
+        while count <= length:
+            if count % 4 == 0:
+                cv2.imwrite(img_path.format(num),frame)
+                num += 1
+                print("{} / {}".format(count,length))
+            count += 1
+            ret, frame = capture.read()
+
 else:
-    print('Arquivo não encontrado')
+    print('Path não encontrado')
 
 print(time.time() - ini)
