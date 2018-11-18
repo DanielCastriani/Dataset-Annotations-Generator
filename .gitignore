@@ -1,5 +1,4 @@
 /*images
-/*annotations
 /trash
 /__pycache__
 /output_files
@@ -11,3 +10,5 @@ log_verifica.txt
 print_output/
 BKP/
 video2img/
+video2img_sel/
+rcnn_to_cnn_images/
