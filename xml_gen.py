@@ -71,7 +71,7 @@ def onkeypress(event):
         img = None
         plt.close()
     elif event.key == 'enter':
-        skp = 9    
+        skp = 15    
         tl_list = []
         br_list = []
         img = None

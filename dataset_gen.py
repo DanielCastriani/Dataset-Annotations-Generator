@@ -14,6 +14,7 @@ xml_folder = ''
 
 replace_classe = False
 skip_class = ['marcador_alimnhamento','marcador_de_perigo','de_preferencia']
+wh_size = 30
 exts = Util.exts()
 
 def gera_arquivo(xml_tree,img):
@@ -44,14 +45,14 @@ def transformacao(xml,image_path):
 
     #Brilho
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(30,1))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(20,1))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(-20,1))
+    gera_arquivo(xml,img_efx.filter_brightnes_contrast(10,1))
+    gera_arquivo(xml,img_efx.filter_brightnes_contrast(-10,1))
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(-30,1))
 
     #Contraste
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.7))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.8))
-    gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.2))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,0.8))
+    #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.2))
     #gera_arquivo(xml,img_efx.filter_brightnes_contrast(0,1.3))
 
 
@@ -106,7 +107,8 @@ if __name__ == '__main__':
 
             existe = False
             for i in range(len(exts)):
-                xml_path = os.path.join(xml_folder, img.name.replace(exts[i], 'xml'))
+                im_ext = exts[i]
+                xml_path = os.path.join(xml_folder, img.name.replace(im_ext, 'xml'))
                 if os.path.exists(xml_path):
                     existe = True
                     break
@@ -117,10 +119,26 @@ if __name__ == '__main__':
 
                     skip = False
                     for obj in o_tree.findall('object'):
+                        # Verifica tamanho bndbx
+                        bndbx = obj.find('bndbox')
+                        x0 = int(bndbx.find('xmin').text)
+                        y0 = int(bndbx.find('ymin').text)
+                        x1 = int(bndbx.find('xmax').text)
+                        y1 = int(bndbx.find('ymax').text)
+
+                        h = y1 - y0
+                        w = x1 - x0
+                        if h < wh_size or w < wh_size:
+                            skip = True
+                            print('Skip {} \t{} x {}'.format(xml_path,w,h))
+                            break
+
+                        # Verifica Classe
                         for s in skip_class:
                             if obj.find('name').text == s:
                                 skip = True
-                                break
+                                print('Skip {} Classe {}'.format(xml_path,s))
+                                break     
                         if skip:
                             break
 
