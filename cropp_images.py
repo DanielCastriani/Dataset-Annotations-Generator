@@ -1,16 +1,12 @@
-#pylint: disable=E1101
-
 import os
 import sys
 import matplotlib.pyplot as plt
 import cv2
 from matplotlib.widgets import RectangleSelector
-import class_counter as c_count
-import numpy as np
-import Util
+from Utils import Util
 import time
 
-exts = ['png','PNG','jpg','JPG']
+exts = Util.exts()
 
 image_folder = 'images'
 savedir = 'annotations'
@@ -40,13 +36,15 @@ def line_select_callback(clk,rls):
     global tl
     global br
 
-    tl = (int(clk.xdata),int(clk.ydata))
-    br = (int(rls.xdata),int(rls.ydata))
+    tl = (int(clk.xdata), int(clk.ydata))
+    br = (int(rls.xdata), int(rls.ydata))
     if preview:
         pass
 
+
 def toggle_selector(event):
     toggle_selector.RS.set_active(True)
+
 
 def cropp():
     global img
@@ -54,9 +52,8 @@ def cropp():
     global img_path
     global image
 
-    h,w = (br[1]+1) - tl[1] ,  (br[0]+1) - tl[0]
-    print(w,' x ',h)
-
+    h,w = (br[1]+1) - tl[1],  (br[0]+1) - tl[0]
+    print(w, ' x ', h)
 
     if not os.path.exists('print_output'):
         os.mkdir('print_output')
@@ -66,6 +63,7 @@ def cropp():
 
     img_path = 'print_output/imagem {}.png'.format(time.time())
     cv2.imwrite(img_path,image)    
+
 
 def onkeypress(event):
     global object_list
@@ -92,6 +90,7 @@ def onkeypress(event):
     elif event.key == 'q' or event.key == 'f12' :
         exit()     
 
+
 def legenda():
     if verbose:
         Util.plt_legenda()
@@ -103,8 +102,10 @@ def legenda():
     if verbose and img is not None:
         print('File:['+str(n)+'] - '+img.name)
 
+
 def order_by(elm):
     return elm[1].name
+
 
 def help():
     print("Parametros")
@@ -112,6 +113,7 @@ def help():
     print("\t-a \tTodas as opções")
     print("\t-r \tOrdenar reverso")
     print("\tn=[num]\t pula [num] arquivo(s)")
+
 
 if __name__ == '__main__':
     
@@ -151,9 +153,9 @@ if __name__ == '__main__':
 
     sc_dir = os.scandir(image_folder)
     
-    all_files = sorted(enumerate(sc_dir),key=order_by,reverse=reverso)
+    all_files = sorted(enumerate(sc_dir), key=order_by, reverse=reverso)
 
-    for n,image_file in all_files:
+    for n, image_file in all_files:
         qtd += 1
 
         if skp_nome_f:
@@ -183,8 +185,8 @@ if __name__ == '__main__':
         tl_list = []
         br_list = []
         object_list = []
-        tl = (0,0)
-        br = (0,0)
+        tl = (0, 0)
+        br = (0, 0)
     
         if verbose:
             os.system('clear')
@@ -204,14 +206,14 @@ if __name__ == '__main__':
         ax.imshow(image)
 
         toggle_selector.RS = RectangleSelector(
-            ax,line_select_callback ,
-            drawtype='box',useblit=True,
+            ax,line_select_callback,
+            drawtype='box', useblit=True,
             button=[1], #left mouse click
-            minspanx=5,minspany=5,
-            spancoords='pixels',interactive=True
+            minspanx=5, minspany=5,
+            spancoords='pixels', interactive=True
         )
-        bbox = plt.connect('key_press_event',toggle_selector)
-        key = plt.connect('key_press_event',onkeypress)
+        bbox = plt.connect('key_press_event', toggle_selector)
+        key = plt.connect('key_press_event', onkeypress)
         plt.show()
 
         with open('log_xml_gen.txt','w') as f_log:
