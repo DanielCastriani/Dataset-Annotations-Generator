@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>01ab662.jpg</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1804</xmin>
+      <ymin>328</ymin>
+      <xmax>1875</xmax>
+      <ymax>407</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1245</xmin>
+      <ymin>97</ymin>
+      <xmax>1312</xmax>
+      <ymax>159</ymax>
+    </bndbox>
+  </object>
+</annotation>
