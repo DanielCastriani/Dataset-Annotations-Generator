@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>go1773.jpg</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>217</xmin>
+      <ymin>290</ymin>
+      <xmax>301</xmax>
+      <ymax>382</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>01ab629.jpg</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1615</xmin>
+      <ymin>225</ymin>
+      <xmax>1719</xmax>
+      <ymax>328</ymax>
+    </bndbox>
+  </object>
+</annotation>

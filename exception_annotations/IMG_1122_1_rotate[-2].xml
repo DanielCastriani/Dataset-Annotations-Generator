@@ -1,0 +1,34 @@
+<annotation>
+  <folder>images</folder>
+  <filename>IMG_1122_1_rotate[-2].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>437</width>
+    <height>472</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>50</xmin>
+      <ymin>216</ymin>
+      <xmax>105</xmax>
+      <ymax>272</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>regulamentacao</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>292</xmin>
+      <ymin>123</ymin>
+      <xmax>360</xmax>
+      <ymax>185</ymax>
+    </bndbox>
+  </object>
+</annotation>

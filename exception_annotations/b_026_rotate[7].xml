@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>b_026_rotate[7].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1283</width>
+    <height>1447</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>pare</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1037</xmin>
+      <ymin>143</ymin>
+      <xmax>1148</xmax>
+      <ymax>263</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>go2048.jpg</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>395</xmin>
+      <ymin>348</ymin>
+      <xmax>485</xmax>
+      <ymax>438</ymax>
+    </bndbox>
+  </object>
+</annotation>

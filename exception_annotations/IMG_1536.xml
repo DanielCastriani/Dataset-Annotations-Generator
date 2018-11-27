@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>IMG_1536.JPG</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>440</width>
+    <height>374</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>68</xmin>
+      <ymin>88</ymin>
+      <xmax>150</xmax>
+      <ymax>179</ymax>
+    </bndbox>
+  </object>
+</annotation>

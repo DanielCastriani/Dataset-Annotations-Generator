@@ -1,0 +1,22 @@
+<annotation>
+  <folder>images</folder>
+  <filename>IMG_0553_rotate[3].png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1144</width>
+    <height>917</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>advertencia</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>360</xmin>
+      <ymin>218</ymin>
+      <xmax>485</xmax>
+      <ymax>345</ymax>
+    </bndbox>
+  </object>
+</annotation>
