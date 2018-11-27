@@ -1,15 +1,8 @@
-#pylint: disable=E1101
-
 import os
 import sys
 import matplotlib.pyplot as plt
-import cv2
-from matplotlib.widgets import RectangleSelector
-import xml_writer as w_xml
-import class_counter as c_count
-import numpy as np
-import xml.etree.ElementTree as ET
-import Util
+from Utils import class_counter as c_count
+from Utils import Util
 
 exts = ['png','PNG','jpg','JPG']
 

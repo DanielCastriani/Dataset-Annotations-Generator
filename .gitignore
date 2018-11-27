@@ -1,8 +1,9 @@
 /__pycache__
-/Utils/__pycache__/
 /*images
 /trash
 /output_files
+
+Utils/__pycache__/
 cropp_workspace/
 img_to_cnn_output/
 print_output/
@@ -13,6 +14,7 @@ rcnn_to_cnn_images/
 
 *.zip
 
+*.txt
 log.txt
 log_xml_gen.txt
 log_verifica.txt

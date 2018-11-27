@@ -5,10 +5,10 @@ import sys
 import matplotlib.pyplot as plt
 import cv2
 from matplotlib.widgets import RectangleSelector
-import xml_writer as w_xml
-import class_counter as c_count
-import numpy as np
-import Util
+
+from Utils import xml_writer as w_xml
+from Utils import class_counter as c_count
+from Utils import Util
 
 exts = ['png','PNG','jpg','JPG']
 
@@ -21,6 +21,7 @@ v_c_count = False
 preview = False
 reverso = False
 skp_nome_f = False
+skp_rotated = False
 skp_nome = ""
 
 skp = 0
@@ -172,6 +173,7 @@ def help():
     print("\t-p \tPreview\n")
     print("\t-a \tTodas as opções")
     print("\t-r \tOrdenar reverso")
+    print("\t-sr \tPula _rotate")
     print("\tn=[num]\t pula [num] arquivo(s)")
 
 if __name__ == '__main__':
@@ -191,6 +193,8 @@ if __name__ == '__main__':
             preview = True
         elif sys.argv[i] == '-r':
                 reverso = True
+        elif sys.argv[i] == '-sr':
+            skp_rotated = True
         elif sys.argv[i] == '-a':
             verbose = True
             v_c_count = True
@@ -233,6 +237,11 @@ if __name__ == '__main__':
             continue
 
         img = image_file
+
+        if skp_rotated:
+            if '_rotate' in img.name:
+                continue
+
         verifica_existe = False
 
         for ext in exts:            
