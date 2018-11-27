@@ -1,7 +1,5 @@
-#pylint:disable=E1101
 import os
 import cv2
-import numpy as np
 import xml.etree.ElementTree as ET
 from lxml import etree
 
@@ -13,8 +11,10 @@ n_folder = os.path.join( wspace,'output')
 img_n_folder = os.path.join(n_folder,'images')
 ann_n_folder = os.path.join(n_folder,'annotations')
 
+
 def order_by(elm):
     return elm[1].name
+
 
 def getXY(img,side):
     xf = 0
@@ -51,7 +51,8 @@ def getXY(img,side):
         if px[0] != 0 or px[1] != 0 or px[2] != 0:
             cx = x
             break
-    return (cx,cy)
+    return (cx, cy)
+
 
 def getCoords(img):
     """
@@ -64,7 +65,8 @@ def getCoords(img):
     bl = getXY(img,'bl')
     br = getXY(img,'br')   
 
-    return [tl,tr,bl,br]
+    return [tl, tr, bl, br]
+
 
 def getBndbox(img):
     c = getCoords(img)
@@ -92,7 +94,8 @@ def getBndbox(img):
         x2 = tr[0]
         y2 = br[1]
 
-    return (x1,y1),(x2,y2)
+    return (x1, y1), (x2, y2)
+
 
 def edit_xml(xml_path,xml_file_name,img,tlc,brc):
     tree = ET.parse(xml_path)
@@ -138,8 +141,6 @@ def edit_xml(xml_path,xml_file_name,img,tlc,brc):
     return True
 
 
-
-
 def run():
     qtd_err = 0
     for _,image_file in sorted(enumerate(os.scandir(img_folder)),key=order_by):
@@ -165,6 +166,7 @@ def run():
                     qtd_err += 1
                     print('[Size Error] - ', im_path)
     print('QTD error {}'.format(qtd_err))
+
         
 if __name__ == '__main__':
 
