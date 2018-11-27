@@ -1,11 +1,12 @@
 import sys
 import os
-import xml.etree.ElementTree as ET
 import cv2
-from lxml import etree
-from EfxUtil import Efx
 import time
-import Util
+import xml.etree.ElementTree as ET
+
+from lxml import etree
+from Utils.EfxUtil import Efx
+from Utils import Util
 
 qtd = 0
 output = ''
@@ -17,7 +18,11 @@ skip_class = ['marcador_alimnhamento','marcador_de_perigo','de_preferencia']
 wh_size = 30
 exts = Util.exts()
 
-def gera_arquivo(xml_tree,img):
+# alterar prv para a quantidade de transformaçes
+prv = 4
+
+
+def gera_arquivo(xml_tree, img):
     global qtd
     ni = os.path.join(output,image_folder,str(qtd)+'.png')   
     nx = os.path.join(output,xml_folder,str(qtd)+'.xml')
@@ -38,9 +43,9 @@ def gera_arquivo(xml_tree,img):
     cv2.imwrite(ni,img)
 
     qtd += 1
-# alterar prv para a quantidade de transformaçes
-prv = 4
-def transformacao(xml,image_path):
+
+
+def transformacao(xml, image_path):
     img_efx = Efx(image_path)
 
     #Brilho
@@ -59,11 +64,12 @@ def transformacao(xml,image_path):
 def order_by(elm):
     return elm[1].name
 
+
 if __name__ == '__main__':
     
     if len(sys.argv) == 1:
         print("Passe o caminho por argumento, ex:")
-        print('python file_transfer.py /home/daniel/Desktop/output')
+        print('python dataset_gen.py /home/daniel/Desktop/output')
         exit()
 
     log = ''
@@ -72,7 +78,7 @@ if __name__ == '__main__':
     qtd_arq = 0
     image_folder = 'images'
     xml_folder = 'annotations'
-    output = sys.argv[1]#'/home/daniel/Desktop/output'
+    output = sys.argv[1] # '/home/daniel/Desktop/output'
 
     if not os.path.exists(output):
         print('Path não existe')
@@ -80,7 +86,6 @@ if __name__ == '__main__':
 
     image_folder = 'images'
     xml_folder = 'annotations'
-
 
     qtd = 0
     qtd_skip = 0
@@ -184,8 +189,8 @@ if __name__ == '__main__':
                     with open(nx,'wb') as temp_xml:
                         temp_xml.write(xml_str)  
 
-                    qtd+=1
-                    qtd_arq+=1
+                    qtd += 1
+                    qtd_arq += 1
                     transformacao(tree,ni)
                     if qtd % 30 == 0 :
                         print(str(qtd) + "\t"+ str(qtd_arq) +"/" + str(qtd_files) + "\t\t\tpreview(qtd*" + str(prv)+ "):" + str(qtd_files + qtd_files*prv))
@@ -206,4 +211,3 @@ if __name__ == '__main__':
                 f.write(log)
     else:
         print('path n~ao existe')
-    
