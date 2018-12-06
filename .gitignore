@@ -3,6 +3,7 @@
 /trash
 /output_files
 
+sel_img/
 Utils/__pycache__/
 cropp_workspace/
 img_to_cnn_output/
